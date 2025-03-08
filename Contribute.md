@@ -13,10 +13,11 @@
 
 ## Docker Installation
 - Install docker
+- Create a network - docker network create user_network
 - start postgres
-    - docker run -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
-- Build the image - `docker build -t user_project .`
-- Start the image - `docker run -p 3000:3000 user_project`
+    - docker run --network user_network --name postgres -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
+- Build the image - `docker build --network=host -t user_project .`
+- Start the image - `docker run -e DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/postgres" --network=user_network -p 3000:3000 user_project`
 
 
 ## Docker Compose installation steps

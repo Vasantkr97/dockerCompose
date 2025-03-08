@@ -1,4 +1,4 @@
-FROM node: apline
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -11,8 +11,9 @@ COPY . .
 
 ENV DATABASE_URL="postgresql://postgres:mtsecretpassword@localhost:5432/postgres"
 
-RUN npx prisma migrate dev
 RUN npx prisma generate
 RUN npm  run build
 
-CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD  ["npm","run", "dev:docker"]

@@ -24,6 +24,7 @@ app.post("/", async (req, res) => {
     res.json({
         msg: "Post Endpint"
     })
-
+}
+)
 
 app.listen(3000);
